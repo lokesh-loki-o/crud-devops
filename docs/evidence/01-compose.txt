@@ -1,0 +1,37 @@
+$ docker compose ps
+NAME                  IMAGE                       COMMAND                  SERVICE      CREATED         STATUS                   PORTS
+crud-devops-project   crud-devops-project:1.0.0   "/rails/bin/docker-e…"   web          4 minutes ago   Up 4 minutes (healthy)   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+crud-mysql            mysql:8.0                   "docker-entrypoint.s…"   crud-mysql   4 minutes ago   Up 4 minutes (healthy)   127.0.0.1:3306->3306/tcp
+
+$ functional test (run inside the web container)
+PASS  GET /up (HTTP 200)
+PASS  GET list (HTTP 200)
+PASS  POST create (id 1)
+PASS  GET one (HTTP 200)
+PASS  PATCH update (HTTP 200)
+PASS  PUT update (HTTP 200)
+PASS  update persisted
+PASS  POST invalid (blank title) (HTTP 422)
+PASS  DELETE (HTTP 200)
+PASS  GET deleted (HTTP 404)
+FAILURES: 0
+
+$ docker image ls crud-devops-project:1.0.0
+IMAGE                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+crud-devops-project:1.0.0   0157743bf121        814MB          194MB   U    
+
+$ docker exec crud-devops-project id
+uid=1000(rails) gid=1000(rails) groups=1000(rails)
+
+$ PID 1 command
+puma 8.0.2 (tcp://0.0.0.0:3000) [rails]                               
+
+$ persistence: create a row, docker compose down (volumes kept), up, read it back
+created id 2
+ Container crud-mysql Removed 
+ Network crud_net Removing 
+ Network crud_net Removed 
+ Container crud-mysql Healthy 
+ Container crud-devops-project Healthy 
+{"id":2,"title":"persistence check","description":null,"completed":false,"created_at":"2026-11-09T23:08:36.681Z","updated_at":"2026-11-09T23:08:36.681Z"}
+{"message":"Task deleted successfully"}

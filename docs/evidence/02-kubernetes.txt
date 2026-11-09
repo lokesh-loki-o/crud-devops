@@ -1,0 +1,106 @@
+$ kubectl get nodes -o wide
+NAME       STATUS   ROLES           AGE    VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION            CONTAINER-RUNTIME
+minikube   Ready    control-plane   3m7s   v1.37.0   192.168.49.2   <none>        Debian GNU/Linux 12 (bookworm)   7.0.14-linuxkit (arm64)   containerd://2.3.4
+
+$ kubectl -n crud-app get deploy,statefulset,pods,svc,pvc -o wide
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                      SELECTOR
+deployment.apps/crud-web   1/1     1            1           79s   web          crud-devops-project:1.0.0   app=crud-web
+
+NAME                     READY   AGE   CONTAINERS   IMAGES
+statefulset.apps/mysql   1/1     79s   mysql        mysql:8.0
+
+NAME                            READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+pod/crud-web-75bb9db5d4-g74kt   1/1     Running   0          79s   10.244.0.4   minikube   <none>           <none>
+pod/mysql-0                     1/1     Running   0          79s   10.244.0.5   minikube   <none>           <none>
+
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+service/crud-web   ClusterIP   10.107.234.11   <none>        80/TCP     79s   app=crud-web
+service/mysql      ClusterIP   None            <none>        3306/TCP   79s   app=mysql
+
+NAME                                       STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/mysql-data-mysql-0   Bound    pvc-9412493b-a3f4-4056-a2d6-d229d14a8d52   2Gi        RWO            standard       <unset>                 79s   Filesystem
+
+$ kubectl -n crud-app describe deployment crud-web
+Name:                   crud-web
+Namespace:              crud-app
+CreationTimestamp:      Tue, 10 Nov 2026 04:39:53 +0530
+Labels:                 app=crud-web
+                        app.kubernetes.io/part-of=crud-devops-project
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=crud-web
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=crud-web
+  Init Containers:
+   wait-for-mysql:
+    Image:      crud-devops-project:1.0.0
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      bash
+      -c
+      until (echo > /dev/tcp/mysql/3306) 2>/dev/null; do echo waiting for mysql; sleep 2; done
+    Limits:
+      cpu:     100m
+      memory:  128Mi
+    Requests:
+      cpu:        50m
+      memory:     64Mi
+    Environment:  <none>
+    Mounts:       <none>
+  Containers:
+   web:
+    Image:      crud-devops-project:1.0.0
+    Port:       3000/TCP (http)
+    Host Port:  0/TCP (http)
+    Limits:
+      cpu:     2
+      memory:  1Gi
+    Requests:
+      cpu:      500m
+      memory:   512Mi
+    Liveness:   http-get http://:http/up delay=0s timeout=5s period=10s successThreshold=1 failureThreshold=6
+    Readiness:  http-get http://:http/up delay=0s timeout=3s period=5s successThreshold=1 failureThreshold=3
+    Startup:    http-get http://:http/up delay=0s timeout=1s period=5s successThreshold=1 failureThreshold=30
+    Environment Variables from:
+      crud-config  ConfigMap  Optional: false
+    Environment:
+      DB_USERNAME:       <set to the key 'DB_USERNAME' in secret 'crud-secrets'>       Optional: false
+      DB_PASSWORD:       <set to the key 'DB_PASSWORD' in secret 'crud-secrets'>       Optional: false
+      RAILS_MASTER_KEY:  <set to the key 'RAILS_MASTER_KEY' in secret 'crud-secrets'>  Optional: false
+    Mounts:              <none>
+  Volumes:               <none>
+  Node-Selectors:        <none>
+  Tolerations:           <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   crud-web-75bb9db5d4 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  79s   deployment-controller  Scaled up replica set crud-web-75bb9db5d4 from 0 to 1
+
+$ kubectl -n crud-app get endpointslices
+NAME             ADDRESSTYPE   PORTS   ENDPOINTS    AGE
+crud-web-5mz65   IPv4          3000    10.244.0.4   79s
+mysql-k2p7g      IPv4          3306    10.244.0.5   79s
+
+$ functional test through the Service (http://crud-web)
+PASS  GET /up (HTTP 200)
+PASS  GET list (HTTP 200)
+PASS  POST create (id 1)
+PASS  GET one (HTTP 200)
+PASS  PATCH update (HTTP 200)
+PASS  PUT update (HTTP 200)
+PASS  update persisted
+PASS  POST invalid (blank title) (HTTP 422)
+PASS  DELETE (HTTP 200)
+PASS  GET deleted (HTTP 404)
+FAILURES: 0

@@ -1,0 +1,64 @@
+$ kubectl -n crud-app get pods   (before crash)
+NAME                        READY   STATUS        RESTARTS   AGE
+crud-web-75bb9db5d4-g74kt   1/1     Running       0          5m18s
+k6-runner                   1/1     Terminating   0          92s
+mysql-0                     1/1     Running       0          5m18s
+
+$ date; minikube ssh "sudo pkill -9 -f '[p]uma 8.0.2'"   (SIGKILL the Puma master on the node)
+04:45:11
+pkill exit: 0
+
+$ kubectl -n crud-app get pods   (polled every 3 s)
+04:45:12  crud-web-75bb9db5d4-g74kt   1/1   Running   0     5m19s
+04:45:15  crud-web-75bb9db5d4-g74kt   0/1   Running   1 (3s ago)   5m22s
+04:45:18  crud-web-75bb9db5d4-g74kt   0/1   Running   1 (6s ago)   5m25s
+04:45:21  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (9s ago)   5m28s
+04:45:24  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (12s ago)   5m31s
+04:45:27  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (15s ago)   5m34s
+04:45:30  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (19s ago)   5m38s
+04:45:34  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (22s ago)   5m41s
+04:45:37  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (25s ago)   5m44s
+04:45:40  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (28s ago)   5m47s
+04:45:43  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (31s ago)   5m50s
+04:45:46  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (34s ago)   5m53s
+04:45:49  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (37s ago)   5m56s
+04:45:52  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (40s ago)   5m59s
+04:45:55  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (43s ago)   6m2s
+04:45:58  crud-web-75bb9db5d4-g74kt   1/1   Running   1 (46s ago)   6m5s
+
+$ last state of the web container
+restartCount=1
+lastState={"terminated":{"containerID":"containerd://d8e1785b6ef5f2141c584a5a7aeda0fa8bd764e7dabfd80d0392955888e3abb4","exitCode":137,"finishedAt":"2026-11-09T23:15:12Z","reason":"Error","startedAt":"2026-11-09T23:11:01Z"}}
+
+$ kubectl -n crud-app get events (web pod)
+6m8s        Normal    Started                 pod/crud-web-75bb9db5d4-g74kt              Container started
+6m8s        Normal    SuccessfulCreate        replicaset/crud-web-75bb9db5d4             Created pod: crud-web-75bb9db5d4-g74kt
+6m8s        Normal    ScalingReplicaSet       deployment/crud-web                        Scaled up replica set crud-web-75bb9db5d4 from 0 to 1
+6m8s        Normal    Scheduled               pod/crud-web-75bb9db5d4-g74kt              Successfully assigned crud-app/crud-web-75bb9db5d4-g74kt to minikube
+48s         Warning   Unhealthy               pod/crud-web-75bb9db5d4-g74kt              Startup probe failed: Get "http://10.244.0.4:3000/up": dial tcp 10.244.0.4:3000: connect: connection refused
+48s         Normal    Started                 pod/crud-web-75bb9db5d4-g74kt              Container started
+48s         Normal    Created                 pod/crud-web-75bb9db5d4-g74kt              Container created
+48s         Normal    Pulled                  pod/crud-web-75bb9db5d4-g74kt              Container image "crud-devops-project:1.0.0" already present on machine and can be accessed by the pod
+
+$ kubectl delete pod (self-healing through the ReplicaSet)
+deleting pod/crud-web-75bb9db5d4-g74kt
+pod "crud-web-75bb9db5d4-g74kt" deleted from crud-app namespace
+Waiting for deployment "crud-web" rollout to finish: 0 of 1 updated replicas are available...
+Waiting for deployment "crud-web" rollout to finish: 0 of 1 updated replicas are available...
+deployment "crud-web" successfully rolled out
+NAME                        READY   STATUS    RESTARTS   AGE
+crud-web-75bb9db5d4-5gqgt   1/1     Running   0          5s
+mysql-0                     1/1     Running   0          6m14s
+
+$ functional test after recovery
+PASS  GET /up (HTTP 200)
+PASS  GET list (HTTP 200)
+PASS  POST create (id 31596)
+PASS  GET one (HTTP 200)
+PASS  PATCH update (HTTP 200)
+PASS  PUT update (HTTP 200)
+PASS  update persisted
+PASS  POST invalid (blank title) (HTTP 422)
+PASS  DELETE (HTTP 200)
+PASS  GET deleted (HTTP 404)
+FAILURES: 0
