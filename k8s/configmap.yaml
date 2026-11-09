@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: crud-config
+  namespace: crud-app
+data:
+  RAILS_ENV: "production"
+  PORT: "3000"
+  DB_HOST: "mysql"
+  MYSQL_DATABASE: "crud_devops_project_production"
+  # Puma: 2 worker processes x 5 threads = 10 requests served concurrently.
+  WEB_CONCURRENCY: "2"
+  RAILS_MAX_THREADS: "5"

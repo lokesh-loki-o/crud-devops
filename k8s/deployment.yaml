@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-web
+  namespace: crud-app
+  labels:
+    app: crud-web
+    app.kubernetes.io/part-of: crud-devops-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crud-web
+  template:
+    metadata:
+      labels:
+        app: crud-web
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      initContainers:
+        # Wait for MySQL so the app does not crash-loop during first start.
+        - name: wait-for-mysql
+          image: crud-devops-project:1.0.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - bash
+            - -c
+            - until (echo > /dev/tcp/mysql/3306) 2>/dev/null; do echo waiting for mysql; sleep 2; done
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+      containers:
+        - name: web
+          image: crud-devops-project:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: crud-config
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: crud-secrets
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: crud-secrets
+                  key: DB_PASSWORD
+            - name: RAILS_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: crud-secrets
+                  key: RAILS_MASTER_KEY
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: "2"
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+          # Allows up to 150 seconds for db:prepare and boot before liveness applies.
+          startupProbe:
+            httpGet:
+              path: /up
+              port: http
+            periodSeconds: 5
+            failureThreshold: 30
+          readinessProbe:
+            httpGet:
+              path: /up
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /up
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
