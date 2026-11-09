@@ -1,0 +1,57 @@
+# Values come from .env (copy env.example to .env and fill it in).
+services:
+  crud-mysql:
+    image: mysql:8.0
+    container_name: crud-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set in .env}
+      MYSQL_DATABASE: crud_devops_project_production
+      MYSQL_USER: ${DB_USERNAME:?set in .env}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?set in .env}
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - crud_net
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build: .
+    image: crud-devops-project:1.0.0
+    container_name: crud-devops-project
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: production
+      PORT: "3000"
+      DB_HOST: crud-mysql
+      DB_USERNAME: ${DB_USERNAME:?set in .env}
+      DB_PASSWORD: ${DB_PASSWORD:?set in .env}
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY:?set in .env}
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-2}
+      RAILS_MAX_THREADS: ${RAILS_MAX_THREADS:-5}
+    networks:
+      - crud_net
+    depends_on:
+      crud-mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3000/up"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+networks:
+  crud_net:
+    name: crud_net
+
+volumes:
+  mysql_data:
