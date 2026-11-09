@@ -1,0 +1,64 @@
+--- 04:41:27
+crud-web-75bb9db5d4-g74kt   5m    14Mi   
+--- 04:41:32
+crud-web-75bb9db5d4-g74kt   5m    14Mi   
+--- 04:41:37
+crud-web-75bb9db5d4-g74kt   5m    14Mi   
+--- 04:41:42
+crud-web-75bb9db5d4-g74kt   5m    14Mi   
+--- 04:41:47
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:41:53
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:41:58
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:03
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:08
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:13
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:18
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:23
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:28
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:33
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:38
+crud-web-75bb9db5d4-g74kt   177m   248Mi   
+k6-runner                   240m   197Mi   
+mysql-0                     127m   380Mi   
+--- 04:42:44
+crud-web-75bb9db5d4-g74kt   1563m   361Mi   
+k6-runner                   302m    486Mi   
+mysql-0                     297m    381Mi   
+--- 04:42:49
+crud-web-75bb9db5d4-g74kt   1563m   361Mi   
+k6-runner                   302m    486Mi   
+mysql-0                     297m    381Mi   
+--- 04:42:54
+crud-web-75bb9db5d4-g74kt   1563m   361Mi   
+k6-runner                   302m    486Mi   
+mysql-0                     297m    381Mi   

@@ -1,0 +1,60 @@
+--- 04:43:40
+crud-web-75bb9db5d4-g74kt   1563m   361Mi   
+k6-runner                   302m    486Mi   
+mysql-0                     297m    381Mi   
+--- 04:43:45
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:43:50
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:43:56
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:01
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:06
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:11
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:16
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:21
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:26
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:31
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:36
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:41
+crud-web-75bb9db5d4-g74kt   353m   358Mi   
+mysql-0                     82m    381Mi   
+--- 04:44:47
+crud-web-75bb9db5d4-g74kt   1488m   368Mi   
+k6-runner                   313m    394Mi   
+mysql-0                     292m    382Mi   
+--- 04:44:52
+crud-web-75bb9db5d4-g74kt   1488m   368Mi   
+k6-runner                   313m    394Mi   
+mysql-0                     292m    382Mi   
+--- 04:44:57
+crud-web-75bb9db5d4-g74kt   1488m   368Mi   
+k6-runner                   313m    394Mi   
+mysql-0                     292m    382Mi   
+--- 04:45:02
+crud-web-75bb9db5d4-g74kt   1488m   368Mi   
+k6-runner                   313m    394Mi   
+mysql-0                     292m    382Mi   
+--- 04:45:07
+crud-web-75bb9db5d4-g74kt   1488m   368Mi   
+k6-runner                   313m    394Mi   
+mysql-0                     292m    382Mi   

@@ -1,0 +1,12 @@
+1794266109
+usage_usec 237567356
+user_usec 178532163
+system_usec 59035193
+nice_usec 0
+nr_periods 1852
+nr_throttled 0
+throttled_usec 0
+nr_bursts 0
+burst_usec 0
+402194432
+402194432

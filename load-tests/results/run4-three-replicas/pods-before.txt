@@ -1,0 +1,6 @@
+NAME                        READY   STATUS    RESTARTS   AGE
+crud-web-75bb9db5d4-5gqgt   1/1     Running   0          4m33s
+crud-web-75bb9db5d4-9xkhp   1/1     Running   0          16s
+crud-web-75bb9db5d4-txrkz   1/1     Running   0          16s
+k6-runner                   1/1     Running   0          0s
+mysql-0                     1/1     Running   0          10m

@@ -1,0 +1,2 @@
+# Raw k6 samples are 40-100 MB per run. analysis.md and summary.json hold the results.
+*/metrics.csv

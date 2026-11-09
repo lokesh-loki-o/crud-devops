@@ -1,0 +1,29 @@
+# Runs k6 inside the cluster, so results measure the app rather than a
+# macOS port-forward tunnel.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k6-runner
+  namespace: crud-app
+  labels:
+    app: k6-runner
+spec:
+  restartPolicy: Never
+  containers:
+    - name: k6
+      image: grafana/k6:1.0.0
+      command: ["sleep", "3600"]
+      resources:
+        requests:
+          cpu: "1"
+          memory: 512Mi
+        limits:
+          cpu: "2"
+          memory: 1500Mi
+      volumeMounts:
+        - name: script
+          mountPath: /scripts
+  volumes:
+    - name: script
+      configMap:
+        name: k6-script

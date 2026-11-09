@@ -1,0 +1,194 @@
+--- 04:46:33
+mysql-0   150m   384Mi   
+--- 04:46:38
+mysql-0   150m   384Mi   
+--- 04:46:43
+mysql-0   150m   384Mi   
+--- 04:46:48
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:46:53
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:46:58
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:03
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:08
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:13
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:18
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:23
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:29
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:34
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:39
+crud-web-75bb9db5d4-5gqgt   78m    203Mi   
+k6-runner                   239m   151Mi   
+mysql-0                     42m    388Mi   
+--- 04:47:44
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:47:49
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:47:54
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:47:59
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:04
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:09
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:14
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:19
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:25
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:30
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:35
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:40
+crud-web-75bb9db5d4-5gqgt   1510m   361Mi   
+k6-runner                   307m    410Mi   
+mysql-0                     308m    390Mi   
+--- 04:48:45
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:48:50
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:48:55
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:00
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:05
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:11
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:16
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:21
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:26
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:31
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:36
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:41
+crud-web-75bb9db5d4-5gqgt   1550m   367Mi   
+crud-web-75bb9db5d4-chmz2   59m     165Mi   
+crud-web-75bb9db5d4-mfzz6   66m     170Mi   
+k6-runner                   412m    652Mi   
+mysql-0                     331m    398Mi   
+--- 04:49:46
+crud-web-75bb9db5d4-5gqgt   1538m   363Mi   
+crud-web-75bb9db5d4-chmz2   10m     169Mi   
+crud-web-75bb9db5d4-mfzz6   7m      138Mi   
+k6-runner                   426m    927Mi   
+mysql-0                     324m    398Mi   
+--- 04:49:51
+crud-web-75bb9db5d4-5gqgt   1538m   363Mi   
+crud-web-75bb9db5d4-chmz2   10m     169Mi   
+crud-web-75bb9db5d4-mfzz6   7m      138Mi   
+k6-runner                   426m    927Mi   
+mysql-0                     324m    398Mi   
+--- 04:49:57
+crud-web-75bb9db5d4-5gqgt   1538m   363Mi   
+crud-web-75bb9db5d4-chmz2   10m     169Mi   
+crud-web-75bb9db5d4-mfzz6   7m      138Mi   
+k6-runner                   426m    927Mi   
+mysql-0                     324m    398Mi   
+--- 04:50:02
+crud-web-75bb9db5d4-5gqgt   1538m   363Mi   
+crud-web-75bb9db5d4-chmz2   10m     169Mi   
+crud-web-75bb9db5d4-mfzz6   7m      138Mi   
+k6-runner                   426m    927Mi   
+mysql-0                     324m    398Mi   

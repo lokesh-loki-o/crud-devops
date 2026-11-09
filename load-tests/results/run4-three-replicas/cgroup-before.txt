@@ -1,0 +1,12 @@
+1794266435
+usage_usec 311137962
+user_usec 234584425
+system_usec 76553536
+nice_usec 0
+nr_periods 2188
+nr_throttled 0
+throttled_usec 0
+nr_bursts 0
+burst_usec 0
+400277504
+400277504
