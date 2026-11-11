@@ -36,6 +36,8 @@ docker compose up -d --build --wait
 docker exec -i -e BASE_URL=http://localhost:3000 crud-devops-project bash -s < load-tests/functional-test.sh
 ```
 
+The Rails API is available at `http://localhost:3002` on the host. To run the React frontend, use `npm --prefix frontend run dev` and open `http://localhost:5173`.
+
 ## Deploy on Minikube
 
 ```bash
