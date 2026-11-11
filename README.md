@@ -38,6 +38,16 @@ docker exec -i -e BASE_URL=http://localhost:3000 crud-devops-project bash -s < l
 
 The Rails API is available at `http://localhost:3002` on the host. To run the React frontend, use `npm --prefix frontend run dev` and open `http://localhost:5173`.
 
+## Docker monitoring
+
+Start the app and monitoring services with Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+Open Grafana at `http://localhost:3000` and select the **CRUD Project - Docker Containers** dashboard in the **CRUD Docker** folder. Prometheus scrapes a Docker API exporter for each running container's CPU and memory metrics; Prometheus is available at `http://localhost:9090`. On Linux, set `DOCKER_SOCK=/var/run/docker.sock` before running Compose; Docker Desktop on macOS uses its default socket path. The exporter needs access to the Docker socket, so keep this stack local and do not expose the exporter outside the trusted Docker network.
+
 ## Deploy on Minikube
 
 ```bash

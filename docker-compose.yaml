@@ -49,9 +49,55 @@ services:
       retries: 5
       start_period: 40s
 
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    container_name: crud-prometheus
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - crud_net
+    depends_on:
+      - docker-exporter
+
+  docker-exporter:
+    build: ./monitoring/docker-exporter
+    image: crud-docker-exporter:1.0.0
+    container_name: crud-docker-exporter
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_SOCK:-${HOME}/.docker/run/docker.sock}:/var/run/docker.sock:ro
+    networks:
+      - crud_net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./monitoring/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    networks:
+      - crud_net
+    depends_on:
+      - prometheus
+
 networks:
   crud_net:
     name: crud_net
 
 volumes:
   mysql_data:
+  prometheus_data:
+  grafana_data:
+    name: grafana-storage

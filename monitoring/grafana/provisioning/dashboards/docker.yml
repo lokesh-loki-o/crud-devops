@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: CRUD Docker
+    orgId: 1
+    folder: CRUD Docker
+    type: file
+    disableDeletion: true
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards
